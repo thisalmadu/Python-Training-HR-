@@ -1,6 +1,6 @@
-# Basic Important Syntax
+## Basic Important Syntax
 
-## Adjust a string output width 
+### Adjust a string output width 
 
 txt = "banana"
 
