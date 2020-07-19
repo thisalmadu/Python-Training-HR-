@@ -1,4 +1,4 @@
-Hacker Rank Python
+Python Training
 ------------------------
 
 Adjust a string output width
