@@ -1,4 +1,4 @@
-# Python Training
+# Basic Important Syntax
 
 ## Adjust a string output width 
 
