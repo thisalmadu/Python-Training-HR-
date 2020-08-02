@@ -35,16 +35,13 @@ OR >> rjust(,) OR >> ljust(,)
 >> f.write("File has the new content!")
 >> f.close()
 --------------------------------------------------------------------
-2.2) Open the file "demofile2.txt" and append content to the file:
+
+
+3) STRING FORMATTING
 --------------------------------------------------------------------
->> f = open("demofile2.txt", "a")
->> f.write("Now the file has more content!")
->> f.close()
+3.1) Check a end letter of a string
 --------------------------------------------------------------------
-2.3) open and read the file after the appending:
---------------------------------------------------------------------
->> f = open("demofile3.txt", "r")
->> print(f.read())
---------------------------------------------------------------------
+>> name.endswith('a') #does the string 'name' ends with letter 'a'
+
 
 
