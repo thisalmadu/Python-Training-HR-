@@ -1,41 +1,50 @@
 Important Python Syntax
 ==========================
 
-Adjust a string output width
+1) I/O
 --------------------------------------------------------------------
-txt = "banana"
+1.1) Adjust a string output width
+--------------------------------------------------------------------
+>> txt = "banana"
+>> x = txt.rjust(10,"0")
+>> print(x)
+--------------------------------------------------------------------
+1.2) Input two integers in the same line separated by an space
+--------------------------------------------------------------------
+>> m,n = map(int,input().split()) 
+OR
+>> ... = map(int,raw.input().split())
+--------------------------------------------------------------------
+1.3) Align a text center, right or left with a given width
+--------------------------------------------------------------------
+>> print("string-need".center(width,"fll_op"))
+OR
+>> print("H".center(5,"_")) 
+OR >> rjust(,) OR >> ljust(,)
 
-x = txt.rjust(10,"0")
 
-print(x)
+2) FILE HANDLING
+--------------------------------------------------------------------
+2.1) Receive an input and convert directly to an integer array
+--------------------------------------------------------------------
+>> arr = map(int,raw_input().strip().split(' '))
+--------------------------------------------------------------------
+2.2) Open the file "demofile3.txt" and overwrite the content:
+--------------------------------------------------------------------
+>> f = open("demofile3.txt", "w")
+>> f.write("File has the new content!")
+>> f.close()
+--------------------------------------------------------------------
+2.2) Open the file "demofile2.txt" and append content to the file:
+--------------------------------------------------------------------
+>> f = open("demofile2.txt", "a")
+>> f.write("Now the file has more content!")
+>> f.close()
+--------------------------------------------------------------------
+2.3) open and read the file after the appending:
+--------------------------------------------------------------------
+>> f = open("demofile3.txt", "r")
+>> print(f.read())
 --------------------------------------------------------------------
 
-Receive an input and convert directly to an integer array
---------------------------------------------------------------------
-arr = map(int,raw_input().strip().split(' '))
 
-### Open the file "demofile3.txt" and overwrite the content:
-
-f = open("demofile3.txt", "w")
-
-f.write("File has the new content!")
-
-f.close()
---------------------------------------------------------------------
-
-Open the file "demofile2.txt" and append content to the file:
---------------------------------------------------------------------
-f = open("demofile2.txt", "a")
-
-f.write("Now the file has more content!")
-
-f.close()
---------------------------------------------------------------------
-
-open and read the file after the appending:
---------------------------------------------------------------------
-
-f = open("demofile3.txt", "r")
-
-print(f.read())
---------------------------------------------------------------------
