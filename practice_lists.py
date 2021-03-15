@@ -4,9 +4,7 @@
 # using any of the methods you’ve learned thus far, like a for loop or a list comprehension.
 
 filenames = ["program.c", "stdio.hpp", "sample.hpp", "a.out", "math.hpp", "hpp.out"]
-# Generate newfilenames as a list containing the new filenames
-# using as many lines of code as your chosen method requires.
-newfilenames = []
+
 for name in filenames:
     if name.endswith(".hpp"):
         newfilenames.append(name[:-2])
