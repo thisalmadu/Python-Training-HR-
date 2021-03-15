@@ -1,4 +1,4 @@
-
+# with user input
 n = int(input())
 student_marks = {}
 if (n >= 2) and (n<=10) is True:
