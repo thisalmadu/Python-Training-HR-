@@ -196,3 +196,165 @@ We can use the type() function to figure out what class a variable or value belo
 >>> golden = Apple()
 >>> golden.color = "Yellow"
 >>> golden.flavor = "Soft"
+
+# What Is a Method?
+-------------------------
+Calling methods on objects executes functions that operate on attributes of a specific instance of the class. This means that calling a method on a list, for example, only modifies that instance of a list, and not all lists globally. We can define methods within a class by creating functions inside the class definition. These instance methods can take a parameter called self which represents the instance the method is being executed on. This will allow you to access attributes of the instance using dot notation, like self.name, which will access the name attribute of that specific instance of the class object. When you have variables that contain different values for different instances, these are called instance variables.
+
+Special Methods
+-----------------------
+>>> class Apple:
+...     def __init__(self, color, flavor):
+...         self.color = color
+...         self.flavor = flavor
+
+>>> jonagold = Apple("red", "sweet")
+>>> print(jonagold.color)
+Red
+
+>>> class Apple:
+...     def __init__(self, color, flavor):
+...         self.color = color
+...         self.flavor = flavor
+...     def __str__(self):
+...         return "This apple is {} and its flavor is {}".format(self.color, self.flavor)
+
+>>> jonagold = Apple("red", "sweet")
+>>> print(jonagold)
+This apple is red and its flavor is sweet
+
+# Documenting with Docstrings
+---------------------------------
+The Python help function can be super helpful for easily pulling up documentation for classes and methods. We can call the help function on one of our classes, which will return some basic info about the methods defined in our class:
+
+>>> class Apple:
+...     def __init__(self, color, flavor):
+...         self.color = color
+...         self.flavor = flavor
+...     def __str__(self):
+...         return "This apple is {} and its flavor is {}".format(self.color, self.flavor)
+...
+>>> help(Apple)
+Help on class Apple in module __main__:
+
+
+>>> def to_seconds(hours, minutes, seconds):
+...     """Returns the amount of seconds in the given hours, minutes and seconds."""
+...     return hours*3600+minutes*60+seconds
+
+>>> help(to_seconds)
+Help on function to_seconds in module __main__:
+
+to_seconds(hours, minutes, seconds)
+    Returns the amount of seconds in the given hours, minutes and seconds.
+
+Structure of docstring
+------------------------
+class ClassName:
+    """Documentation for the class."""
+    def method_name(self, other_parameters):
+        """Documentation for the method."""
+        body_of_method
+
+def function_name(parameters):
+    """Documentation for the function."""
+    body_of_function
+
+# Object Inheritance
+--------------------------
+>>> class Fruit:
+...     def __init__(self, color, flavor):
+...         self.color = color
+...         self.flavor = flavor
+...
+
+>>> class Apple(Fruit):
+...     pass
+...
+>>> class Grape(Fruit):
+...     pass
+...
+
+>>> granny_smith = Apple("green", "tart")
+>>> carnelian = Grape("purple", "sweet")
+>>> print(granny_smith.flavor)
+tart
+>>> print(carnelian.color)
+purple
+
+>>> class Animal:
+...     sound = ""
+...     def __init__(self, name):
+...         self.name = name
+...     def speak(self):
+...         print("{sound} I'm {name}! {sound}".format(
+...             name=self.name, sound=self.sound))
+...
+>>> class Piglet(Animal):
+...     sound = "Oink!"
+...
+>>> class Cow(Animal):
+...     sound = "Moooo"
+
+>>> hamlet = Piglet("Hamlet")
+>>> hamlet.speak()
+Oink! I'm Hamlet! Oink!
+...
+>>> class Cow(Animal):
+...     sound = "Moooo"
+...
+>>> milky = Cow("Milky White")
+>>> milky.speak()
+Moooo I'm Milky White! Moooo
+
+# Object Composition
+--------------------------------
+You can have a situation where two different classes are related, but there is no inheritance going on. This is referred to as composition -- where one class makes use of code contained in another class. For example, imagine we have a Package class which represents a software package. It contains attributes about the software package, like name, version, and size. We also have a Repository class which represents all the packages available for installation. While there’s no inheritance relationship between the two classes, they are related. The Repository class will contain a dictionary or list of Packages that are contained in the repository. Let's take a look at an example Repository class definition:
+
+>>> class Repository:
+...      def __init__(self):
+...          self.packages = {}
+...      def add_package(self, package):
+...          self.packages[package.name] = package
+...      def total_size(self):
+...          result = 0
+...          for package in self.packages.values():
+...              result += package.size
+...          return result
+
+In the constructor method, we initialize the packages dictionary, which will contain the package objects available in this repository instance. We initialize the dictionary in the constructor to ensure that every instance of the Repository class has its own dictionary.
+
+We then define the add_package method, which takes a Package object as a parameter, and then adds it to our dictionary, using the package name attribute as the key.
+
+Finally, we define a total_size method which computes the total size of all packages contained in our repository. This method iterates through the values in our repository dictionary and adds together the size attributes from each package object contained in the dictionary, returning the total at the end. In this example, we’re making use of Package attributes within our Repository class. We’re also calling the values() method on our packages dictionary instance. Composition allows us to use objects as attributes, as well as access all their attributes and methods.
+
+# Augmenting Python with Modules
+-------------------------------------
+Python modules are separate files that contain classes, functions, and other data that allow us to import and make use of these methods and classes in our own code. Python comes with a lot of modules out of the box. These modules are referred to as the Python Standard Library. You can make use of these modules by using the import keyword, followed by the module name. For example, we'll import the random module, and then call the randint function within this module:
+
+>>> import random
+>>> random.randint(1,10)
+8
+>>> random.randint(1,10)
+7
+>>> random.randint(1,10)
+1
+
+This function takes two integer parameters and returns a random integer between the values we pass it; in this case, 1 and 10. You might notice that calling functions in a module is very similar to calling methods in a class. We use dot notation here too, with a period between the module and function names.
+Let's take a look at another module: datetime. This module is super helpful when working with dates and times.
+
+>>> import datetime
+>>> now = datetime.datetime.now()
+>>> type(now)
+<class 'datetime.datetime'>
+>>> print(now)
+2019-04-24 16:54:55.155199
+
+First, we import the module. Next, we call the now() method which belongs to the datetime class contained within the datetime module. This method generates an instance of the datetime class for the current date and time. This instance has some methods which we can call:
+
+>>> print(now)
+2019-04-24 16:54:55.155199
+>>> now.year
+2019
+>>> print(now + datetime.timedelta(days=28))
+2019-05-22 16:54:55.155199
